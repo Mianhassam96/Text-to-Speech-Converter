@@ -9,7 +9,8 @@ export const textToSpeech = async (
   voice: SpeechSynthesisVoice | null,
   rate: number,
   pitch: number,
-  volume: number
+  volume: number,
+  format: 'mp3' | 'wav' = 'mp3'
 ): Promise<Blob> => {
   return new Promise((resolve, reject) => {
     // Check if text is provided
@@ -21,8 +22,10 @@ export const textToSpeech = async (
     // Create an audio context for recording
     const audioContext = new window.AudioContext();
     const mediaStreamDestination = audioContext.createMediaStreamDestination();
+    const mimeType = format === 'mp3' ? 'audio/mpeg' : 'audio/wav';
+    
     const mediaRecorder = new MediaRecorder(mediaStreamDestination.stream, {
-      mimeType: 'audio/mpeg'
+      mimeType: mimeType
     });
     const audioChunks: BlobPart[] = [];
 
@@ -34,7 +37,7 @@ export const textToSpeech = async (
     };
 
     mediaRecorder.onstop = () => {
-      const audioBlob = new Blob(audioChunks, { type: 'audio/mpeg' });
+      const audioBlob = new Blob(audioChunks, { type: mimeType });
       resolve(audioBlob);
       audioContext.close();
     };
@@ -71,7 +74,7 @@ export const textToSpeech = async (
 /**
  * Downloads the audio blob as a file
  */
-export const downloadAudio = (blob: Blob, filename: string = "speech.mp3") => {
+export const downloadAudio = (blob: Blob, filename: string) => {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.style.display = 'none';
@@ -95,7 +98,8 @@ export const convertAndDownload = async (
   voice: SpeechSynthesisVoice | null,
   rate: number,
   pitch: number,
-  volume: number
+  volume: number,
+  format: 'mp3' | 'wav' = 'mp3'
 ) => {
   try {
     if (!text.trim()) {
@@ -103,17 +107,17 @@ export const convertAndDownload = async (
       return;
     }
     
-    toast.info("Converting text to speech...");
+    toast.info(`Converting text to ${format.toUpperCase()}...`);
     
-    const audioBlob = await textToSpeech(text, voice, rate, pitch, volume);
+    const audioBlob = await textToSpeech(text, voice, rate, pitch, volume, format);
     
     // Generate a filename based on the first few words of the text
     const words = text.trim().split(/\s+/).slice(0, 3).join('_');
-    const filename = `${words}_speech.mp3`;
+    const filename = `${words}_speech.${format}`;
     
     downloadAudio(audioBlob, filename);
     
-    toast.success("Download complete!");
+    toast.success(`${format.toUpperCase()} download complete!`);
   } catch (error) {
     console.error("Error:", error);
     toast.error(error instanceof Error ? error.message : "Failed to convert text to speech");

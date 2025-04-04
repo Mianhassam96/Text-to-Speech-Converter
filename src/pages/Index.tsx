@@ -22,6 +22,12 @@ import { toast } from "sonner";
 import { Play, Pause, Volume2, VolumeX, Download } from "lucide-react";
 import Footer from "@/components/Footer";
 import { convertAndDownload } from "@/utils/speechUtils";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Index = () => {
   const [text, setText] = useState("");
@@ -127,9 +133,9 @@ const Index = () => {
     }
   };
 
-  const handleDownload = async () => {
+  const handleDownload = async (format: 'mp3' | 'wav') => {
     const selectedVoice = availableVoices.find(v => v.name === voice) || null;
-    await convertAndDownload(text, selectedVoice, rate, pitch, volume);
+    await convertAndDownload(text, selectedVoice, rate, pitch, volume, format);
   };
 
   return (
@@ -235,12 +241,22 @@ const Index = () => {
                     </>
                   )}
                 </Button>
-                <Button 
-                  variant="outline" 
-                  onClick={handleDownload}
-                >
-                  <Download className="mr-2 h-4 w-4" /> Download
-                </Button>
+                
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline">
+                      <Download className="mr-2 h-4 w-4" /> Download
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <DropdownMenuItem onClick={() => handleDownload('mp3')}>
+                      Download as MP3
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => handleDownload('wav')}>
+                      Download as WAV
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
               
               <div className="text-xs text-gray-500">
