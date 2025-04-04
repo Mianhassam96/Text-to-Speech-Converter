@@ -21,7 +21,9 @@ export const textToSpeech = async (
     // Create an audio context for recording
     const audioContext = new window.AudioContext();
     const mediaStreamDestination = audioContext.createMediaStreamDestination();
-    const mediaRecorder = new MediaRecorder(mediaStreamDestination.stream);
+    const mediaRecorder = new MediaRecorder(mediaStreamDestination.stream, {
+      mimeType: 'audio/mpeg'
+    });
     const audioChunks: BlobPart[] = [];
 
     // Set up the recorder
@@ -32,7 +34,7 @@ export const textToSpeech = async (
     };
 
     mediaRecorder.onstop = () => {
-      const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+      const audioBlob = new Blob(audioChunks, { type: 'audio/mpeg' });
       resolve(audioBlob);
       audioContext.close();
     };
@@ -69,7 +71,7 @@ export const textToSpeech = async (
 /**
  * Downloads the audio blob as a file
  */
-export const downloadAudio = (blob: Blob, filename: string = "speech.wav") => {
+export const downloadAudio = (blob: Blob, filename: string = "speech.mp3") => {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.style.display = 'none';
@@ -107,7 +109,7 @@ export const convertAndDownload = async (
     
     // Generate a filename based on the first few words of the text
     const words = text.trim().split(/\s+/).slice(0, 3).join('_');
-    const filename = `${words}_speech.wav`;
+    const filename = `${words}_speech.mp3`;
     
     downloadAudio(audioBlob, filename);
     
