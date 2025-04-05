@@ -1,73 +1,69 @@
-# Welcome to your Lovable project
+# 🗣️ Text to Speech Converter
 
-## Project info
+A simple and user-friendly Text to Speech (TTS) web application that converts written text into spoken words. Powered by the Web Speech API, this tool helps users listen to their text with customizable voice and speed options.
 
-**URL**: https://lovable.dev/projects/4759712a-d2ec-41eb-a319-0bf01d88d600
+## 🚀 Features
 
-## How can I edit this code?
+- 🔊 Converts text input into speech using the browser's TTS engine.
+- 🎙️ Supports multiple languages and voices (based on browser support).
+- 🛠️ Adjustable speech rate and pitch.
+- 🎨 Clean and responsive user interface.
+- 💡 Real-time feedback while speaking.
 
-There are several ways of editing your application.
+## 🖼️ Demo
 
-**Use Lovable**
+(You can insert a live demo link here if deployed, e.g., GitHub Pages, Vercel, Netlify)
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/4759712a-d2ec-41eb-a319-0bf01d88d600) and start prompting.
+## 🧰 Tech Stack
 
-Changes made via Lovable will be committed automatically to this repo.
+- HTML
+- CSS / SCSS
+- JavaScript
+- Web Speech API
 
-**Use your preferred IDE**
+## 📦 Installation
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+To run the project locally, follow these steps:
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+```bash
+# 1. Clone the repository
+git clone https://github.com/Mianhassam96/text-to-speech-converter.git
 
-Follow these steps:
+# 2. Navigate to the project directory
+cd text-to-speech-converter
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# 3. Open index.html in your browser
+Note: This project uses the Web Speech API, which is supported in most modern browsers like Chrome and Edge. Firefox support is limited.
+🧠 How It Works
+User enters text in the input box.
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Selects desired voice, rate, and pitch.
 
-# Step 3: Install the necessary dependencies.
-npm i
+Clicks the "Speak" button to hear the spoken version of the text.
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+The browser reads the text using the selected settings.
 
-**Edit a file directly in GitHub**
+✅ TODOs / Improvements
+Add pause and resume functionality.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Option to download audio as a file (requires extra processing).
 
-**Use GitHub Codespaces**
+Save preferred settings using localStorage.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Dark mode support.
 
-## What technologies are used for this project?
+🙌 Acknowledgments
+Inspired by the capabilities of the Web Speech API
 
-This project is built with:
+📄 License
+This project is open-source and available under the MIT License.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Made with ❤️ by MultiMian
 
-## How can I deploy this project?
+yaml
+Copy
+Edit
 
-Simply open [Lovable](https://lovable.dev/projects/4759712a-d2ec-41eb-a319-0bf01d88d600) and click on Share -> Publish.
+---
 
-## Can I connect a custom domain to my Lovable project?
-
-Yes it is!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Let me know if you’d like me to include your project banner, live demo link, or
