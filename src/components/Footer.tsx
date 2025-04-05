@@ -15,7 +15,7 @@ const Footer = () => {
           
           <div className="flex items-center space-x-4">
             <a 
-              href="https://github.com/multimian" 
+              href="https://github.com/Mianhassam96" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-white hover:text-indigo-200 transition-colors"
